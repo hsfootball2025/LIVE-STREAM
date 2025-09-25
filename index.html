@@ -1,10 +1,9 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Live Stream Events</title>
-
   <style>
     body {
       margin: 0;
@@ -21,6 +20,9 @@
       align-items: center;
       padding: 15px 20px;
       background: rgba(0,0,0,0.85);
+      position: sticky;
+      top: 0;
+      z-index: 100;
     }
     .logo {
       display: flex;
@@ -54,7 +56,7 @@
     .subscribe { background: red; }
     .login { background: #444; }
 
-    /* Event grid selalu 5 kolom */
+    /* Event grid desktop */
     .event-grid {
       display: grid;
       grid-template-columns: repeat(5, 1fr);
@@ -67,6 +69,8 @@
       overflow: hidden;
       cursor: pointer;
       transition: transform 0.3s;
+      min-width: 200px;
+      flex: 0 0 auto;
     }
     .event-card:hover { transform: scale(1.05); }
     .event-image {
@@ -121,6 +125,26 @@
       font-size: 18px;
       font-weight: bold;
     }
+
+    /* Tablet */
+    @media (max-width: 1024px) {
+      .event-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    /* Mobile horizontal scroll */
+    @media (max-width: 600px) {
+      .event-grid {
+        display: flex;
+        overflow-x: auto;
+        gap: 15px;
+        padding: 20px;
+        scroll-snap-type: x mandatory;
+      }
+      .event-card {
+        scroll-snap-align: start;
+        width: 220px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -144,7 +168,7 @@
     <!-- 10 contoh event -->
     <div class="event-card" onclick="goToCampaign()">
       <div class="event-image">
-        <img src="https://i.imgur.com/BnlUUj1.jpeg">
+        <img src="https://i.imgur.com/BnlUUj1.jpeg" alt="Event 1">
         <span class="live-tag">LIVE</span>
         <span class="today-tag">Today</span>
       </div>
@@ -156,7 +180,7 @@
 
     <div class="event-card" onclick="goToCampaign()">
       <div class="event-image">
-        <img src="https://i.imgur.com/BnlUUj1.jpeg">
+        <img src="https://i.imgur.com/BnlUUj1.jpeg" alt="Event 2">
         <span class="live-tag">LIVE</span>
         <span class="today-tag">Today</span>
       </div>
@@ -168,7 +192,7 @@
 
     <div class="event-card" onclick="goToCampaign()">
       <div class="event-image">
-        <img src="https://i.imgur.com/BnlUUj1.jpeg">
+        <img src="https://i.imgur.com/BnlUUj1.jpeg" alt="Event 3">
         <span class="live-tag">LIVE</span>
         <span class="today-tag">Today</span>
       </div>
@@ -180,7 +204,7 @@
 
     <div class="event-card" onclick="goToCampaign()">
       <div class="event-image">
-        <img src="https://i.imgur.com/BnlUUj1.jpeg">
+        <img src="https://i.imgur.com/BnlUUj1.jpeg" alt="Event 4">
         <span class="live-tag">LIVE</span>
         <span class="today-tag">Today</span>
       </div>
@@ -192,7 +216,7 @@
 
     <div class="event-card" onclick="goToCampaign()">
       <div class="event-image">
-        <img src="https://i.imgur.com/BnlUUj1.jpeg">
+        <img src="https://i.imgur.com/BnlUUj1.jpeg" alt="Event 5">
         <span class="live-tag">LIVE</span>
         <span class="today-tag">Today</span>
       </div>
@@ -204,7 +228,7 @@
 
     <div class="event-card" onclick="goToCampaign()">
       <div class="event-image">
-        <img src="https://i.imgur.com/BnlUUj1.jpeg">
+        <img src="https://i.imgur.com/BnlUUj1.jpeg" alt="Event 6">
         <span class="live-tag">LIVE</span>
         <span class="today-tag">Today</span>
       </div>
@@ -216,7 +240,7 @@
 
     <div class="event-card" onclick="goToCampaign()">
       <div class="event-image">
-        <img src="https://i.imgur.com/BnlUUj1.jpeg">
+        <img src="https://i.imgur.com/BnlUUj1.jpeg" alt="Event 7">
         <span class="live-tag">LIVE</span>
         <span class="today-tag">Today</span>
       </div>
@@ -228,7 +252,7 @@
 
     <div class="event-card" onclick="goToCampaign()">
       <div class="event-image">
-        <img src="https://i.imgur.com/BnlUUj1.jpeg">
+        <img src="https://i.imgur.com/BnlUUj1.jpeg" alt="Event 8">
         <span class="live-tag">LIVE</span>
         <span class="today-tag">Today</span>
       </div>
@@ -240,7 +264,7 @@
 
     <div class="event-card" onclick="goToCampaign()">
       <div class="event-image">
-        <img src="https://i.imgur.com/BnlUUj1.jpeg">
+        <img src="https://i.imgur.com/BnlUUj1.jpeg" alt="Event 9">
         <span class="live-tag">LIVE</span>
         <span class="today-tag">Today</span>
       </div>
@@ -252,7 +276,7 @@
 
     <div class="event-card" onclick="goToCampaign()">
       <div class="event-image">
-        <img src="https://i.imgur.com/BnlUUj1.jpeg">
+        <img src="https://i.imgur.com/BnlUUj1.jpeg" alt="Event 10">
         <span class="live-tag">LIVE</span>
         <span class="today-tag">Today</span>
       </div>
@@ -262,6 +286,7 @@
       </div>
     </div>
   </div>
+
 
 <!-- Histats.com  START  (aync)-->
 <script type="text/javascript">var _Hasync= _Hasync|| [];
