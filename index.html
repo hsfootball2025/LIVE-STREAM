@@ -20,9 +20,6 @@
       align-items: center;
       padding: 15px 20px;
       background: rgba(0,0,0,0.85);
-      position: sticky;
-      top: 0;
-      z-index: 100;
     }
     .logo {
       display: flex;
@@ -54,29 +51,32 @@
       font-weight: bold;
     }
     .subscribe { background: red; }
-    .login { background: #444; }
 
-    /* Event grid desktop */
+    /* Event grid for desktop */
+    .event-wrapper {
+      padding: 20px;
+    }
     .event-grid {
       display: grid;
       grid-template-columns: repeat(5, 1fr);
       gap: 20px;
-      padding: 30px;
     }
+
+    /* Event card */
     .event-card {
+      min-width: 220px;
       background: rgba(0,0,0,0.7);
       border-radius: 10px;
       overflow: hidden;
       cursor: pointer;
       transition: transform 0.3s;
-      min-width: 200px;
-      flex: 0 0 auto;
+      flex-shrink: 0;
     }
     .event-card:hover { transform: scale(1.05); }
     .event-image {
       position: relative;
       width: 100%;
-      height: 180px;
+      height: 160px;
       background: #000;
     }
     .event-image img {
@@ -126,23 +126,17 @@
       font-weight: bold;
     }
 
-    /* Tablet */
+    /* Responsive: Mobile → horizontal scroll */
     @media (max-width: 1024px) {
-      .event-grid { grid-template-columns: repeat(2, 1fr); }
-    }
-
-    /* Mobile horizontal scroll */
-    @media (max-width: 600px) {
       .event-grid {
         display: flex;
         overflow-x: auto;
         gap: 15px;
-        padding: 20px;
         scroll-snap-type: x mandatory;
+        padding-bottom: 10px;
       }
       .event-card {
         scroll-snap-align: start;
-        width: 220px;
       }
     }
   </style>
@@ -151,138 +145,140 @@
 
   <!-- Header -->
   <header>
-    <div class="logo">
-      <a href="https://api.powerafftrky.com/t/clk?id=A0tlLVCl8BigyXZfB&s1=football2025">
+    <div class="logo" role="banner">
+      <a href="https://api.powerafftrky.com/t/clk?id=A0tlLVCl8BigyXZfB&s1=football2025" id="logo-link" aria-label="Go to campaign">
         <img src="https://i.imgur.com/V0QYwjf.png" alt="Logo">
       </a>
       <span class="live-badge">LIVE</span>
     </div>
-    <div class="buttons">
-      <a href="https://api.powerafftrky.com/t/clk?id=A0tlLVCl8BigyXZfB&s1=football2025" class="subscribe">Subscribe Now</a>
-      <a href="https://api.powerafftrky.com/t/clk?id=A0tlLVCl8BigyXZfB&s1=football2025" class="login">Log In</a>
-    </div>
+
+    <nav class="buttons" role="navigation" aria-label="Actions">
+      <a href="https://api.powerafftrky.com/t/clk?id=A0tlLVCl8BigyXZfB&s1=football2025" class="subscribe" id="subscribe-btn">Subscribe Now</a>
+    </nav>
   </header>
 
   <!-- Event Grid -->
-  <div class="event-grid">
-    <!-- 10 contoh event -->
-    <div class="event-card" onclick="goToCampaign()">
-      <div class="event-image">
-        <img src="https://i.imgur.com/BnlUUj1.jpeg" alt="Event 1">
-        <span class="live-tag">LIVE</span>
-        <span class="today-tag">Today</span>
+  <div class="event-wrapper">
+    <div class="event-grid">
+      <!-- contoh 10 event -->
+      <div class="event-card" onclick="goToCampaign()">
+        <div class="event-image">
+          <img src="https://i.imgur.com/BnlUUj1.jpeg" alt="Event 1">
+          <span class="live-tag">LIVE</span>
+          <span class="today-tag">Today</span>
+        </div>
+        <div class="event-info">
+          <h3>Spartans vs Titans</h3>
+          <p>25 Sept 2025 | 19:00</p>
+        </div>
       </div>
-      <div class="event-info">
-        <h3>Spartans vs Titans</h3>
-        <p>25 Sept 2025 | 19:00 PM GMT+7</p>
-      </div>
-    </div>
 
-    <div class="event-card" onclick="goToCampaign()">
-      <div class="event-image">
-        <img src="https://i.imgur.com/BnlUUj1.jpeg" alt="Event 2">
-        <span class="live-tag">LIVE</span>
-        <span class="today-tag">Today</span>
+      <div class="event-card" onclick="goToCampaign()">
+        <div class="event-image">
+          <img src="https://i.imgur.com/BnlUUj1.jpeg" alt="Event 2">
+          <span class="live-tag">LIVE</span>
+          <span class="today-tag">Today</span>
+        </div>
+        <div class="event-info">
+          <h3>Panthers vs Braves</h3>
+          <p>25 Sept 2025 | 21:30</p>
+        </div>
       </div>
-      <div class="event-info">
-        <h3>Panthers vs Braves</h3>
-        <p>26 Sept 2025 | 21:30 PM GMT+7</p>
-      </div>
-    </div>
 
-    <div class="event-card" onclick="goToCampaign()">
-      <div class="event-image">
-        <img src="https://i.imgur.com/BnlUUj1.jpeg" alt="Event 3">
-        <span class="live-tag">LIVE</span>
-        <span class="today-tag">Today</span>
+      <div class="event-card" onclick="goToCampaign()">
+        <div class="event-image">
+          <img src="https://i.imgur.com/BnlUUj1.jpeg" alt="Event 3">
+          <span class="live-tag">LIVE</span>
+          <span class="today-tag">Today</span>
+        </div>
+        <div class="event-info">
+          <h3>Tigers vs Wolves</h3>
+          <p>26 Sept 2025 | 18:45</p>
+        </div>
       </div>
-      <div class="event-info">
-        <h3>Tigers vs Wolves</h3>
-        <p>27 Sept 2025 | 18:45 PM GMT+7</p>
-      </div>
-    </div>
 
-    <div class="event-card" onclick="goToCampaign()">
-      <div class="event-image">
-        <img src="https://i.imgur.com/BnlUUj1.jpeg" alt="Event 4">
-        <span class="live-tag">LIVE</span>
-        <span class="today-tag">Today</span>
+      <div class="event-card" onclick="goToCampaign()">
+        <div class="event-image">
+          <img src="https://i.imgur.com/BnlUUj1.jpeg" alt="Event 4">
+          <span class="live-tag">LIVE</span>
+          <span class="today-tag">Today</span>
+        </div>
+        <div class="event-info">
+          <h3>Eagles vs Sharks</h3>
+          <p>26 Sept 2025 | 20:15</p>
+        </div>
       </div>
-      <div class="event-info">
-        <h3>Eagles vs Sharks</h3>
-        <p>28 Sept 2025 | 20:15 PM GMT+7</p>
-      </div>
-    </div>
 
-    <div class="event-card" onclick="goToCampaign()">
-      <div class="event-image">
-        <img src="https://i.imgur.com/BnlUUj1.jpeg" alt="Event 5">
-        <span class="live-tag">LIVE</span>
-        <span class="today-tag">Today</span>
+      <div class="event-card" onclick="goToCampaign()">
+        <div class="event-image">
+          <img src="https://i.imgur.com/BnlUUj1.jpeg" alt="Event 5">
+          <span class="live-tag">LIVE</span>
+          <span class="today-tag">Today</span>
+        </div>
+        <div class="event-info">
+          <h3>Hawks vs Dragons</h3>
+          <p>27 Sept 2025 | 22:00</p>
+        </div>
       </div>
-      <div class="event-info">
-        <h3>Hawks vs Lions</h3>
-        <p>29 Sept 2025 | 22:00 PM GMT+7</p>
-      </div>
-    </div>
 
-    <div class="event-card" onclick="goToCampaign()">
-      <div class="event-image">
-        <img src="https://i.imgur.com/BnlUUj1.jpeg" alt="Event 6">
-        <span class="live-tag">LIVE</span>
-        <span class="today-tag">Today</span>
+      <div class="event-card" onclick="goToCampaign()">
+        <div class="event-image">
+          <img src="https://i.imgur.com/BnlUUj1.jpeg" alt="Event 6">
+          <span class="live-tag">LIVE</span>
+          <span class="today-tag">Today</span>
+        </div>
+        <div class="event-info">
+          <h3>Warriors vs Lions</h3>
+          <p>28 Sept 2025 | 19:15</p>
+        </div>
       </div>
-      <div class="event-info">
-        <h3>Bears vs Cougars</h3>
-        <p>30 Sept 2025 | 19:45 PM GMT+7</p>
-      </div>
-    </div>
 
-    <div class="event-card" onclick="goToCampaign()">
-      <div class="event-image">
-        <img src="https://i.imgur.com/BnlUUj1.jpeg" alt="Event 7">
-        <span class="live-tag">LIVE</span>
-        <span class="today-tag">Today</span>
+      <div class="event-card" onclick="goToCampaign()">
+        <div class="event-image">
+          <img src="https://i.imgur.com/BnlUUj1.jpeg" alt="Event 7">
+          <span class="live-tag">LIVE</span>
+          <span class="today-tag">Today</span>
+        </div>
+        <div class="event-info">
+          <h3>Kings vs Rebels</h3>
+          <p>28 Sept 2025 | 21:00</p>
+        </div>
       </div>
-      <div class="event-info">
-        <h3>Knights vs Dragons</h3>
-        <p>01 Oct 2025 | 20:30 PM GMT+7</p>
-      </div>
-    </div>
 
-    <div class="event-card" onclick="goToCampaign()">
-      <div class="event-image">
-        <img src="https://i.imgur.com/BnlUUj1.jpeg" alt="Event 8">
-        <span class="live-tag">LIVE</span>
-        <span class="today-tag">Today</span>
+      <div class="event-card" onclick="goToCampaign()">
+        <div class="event-image">
+          <img src="https://i.imgur.com/BnlUUj1.jpeg" alt="Event 8">
+          <span class="live-tag">LIVE</span>
+          <span class="today-tag">Today</span>
+        </div>
+        <div class="event-info">
+          <h3>Falcons vs Storm</h3>
+          <p>29 Sept 2025 | 20:30</p>
+        </div>
       </div>
-      <div class="event-info">
-        <h3>Bulls vs Rams</h3>
-        <p>02 Oct 2025 | 19:00 PM GMT+7</p>
-      </div>
-    </div>
 
-    <div class="event-card" onclick="goToCampaign()">
-      <div class="event-image">
-        <img src="https://i.imgur.com/BnlUUj1.jpeg" alt="Event 9">
-        <span class="live-tag">LIVE</span>
-        <span class="today-tag">Today</span>
+      <div class="event-card" onclick="goToCampaign()">
+        <div class="event-image">
+          <img src="https://i.imgur.com/BnlUUj1.jpeg" alt="Event 9">
+          <span class="live-tag">LIVE</span>
+          <span class="today-tag">Today</span>
+        </div>
+        <div class="event-info">
+          <h3>Giants vs Raiders</h3>
+          <p>29 Sept 2025 | 22:45</p>
+        </div>
       </div>
-      <div class="event-info">
-        <h3>Raiders vs Pirates</h3>
-        <p>03 Oct 2025 | 21:15 PM GMT+7</p>
-      </div>
-    </div>
 
-    <div class="event-card" onclick="goToCampaign()">
-      <div class="event-image">
-        <img src="https://i.imgur.com/BnlUUj1.jpeg" alt="Event 10">
-        <span class="live-tag">LIVE</span>
-        <span class="today-tag">Today</span>
-      </div>
-      <div class="event-info">
-        <h3>Giants vs Kings</h3>
-        <p>04 Oct 2025 | 20:00 PM GMT+7</p>
+      <div class="event-card" onclick="goToCampaign()">
+        <div class="event-image">
+          <img src="https://i.imgur.com/BnlUUj1.jpeg" alt="Event 10">
+          <span class="live-tag">LIVE</span>
+          <span class="today-tag">Today</span>
+        </div>
+        <div class="event-info">
+          <h3>Bulls vs Rockets</h3>
+          <p>30 Sept 2025 | 18:30</p>
+        </div>
       </div>
     </div>
   </div>
@@ -339,6 +335,10 @@ hs.src = ('//s10.histats.com/js15_as.js');
     // Update tiap 3 detik
     setInterval(updateUsers, 3000);
   </script>
+
+<div id="bottom-logo" style="text-align:center; margin: 20px 0;">
+  <img src="https://i.imgur.com/BRkAXCc.png" alt="Bottom Logo" style="max-width:150px; height:auto;">
+</div>
 
 </body>
 </html>
