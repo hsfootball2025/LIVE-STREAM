@@ -1,287 +1,321 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Live Stream Events</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: url('https://i.imgur.com/9fsVIFR.jpeg') no-repeat center center fixed;
-      background-size: cover;
-      color: white;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Live Stream Events</title>
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: url('https://i.imgur.com/9fsVIFR.jpeg') no-repeat center center fixed;
+  background-size: cover;
+  color: white;
+}
 
-    /* Header */
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 15px 20px;
-      background: rgba(0,0,0,0.85);
-    }
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .logo img {
-      height: 40px;
-    }
-    .live-badge {
-      color: #fff;
-      background: red;
-      padding: 3px 8px;
-      border-radius: 4px;
-      font-size: 14px;
-      font-weight: bold;
-      animation: blink 1s infinite;
-    }
-    @keyframes blink {
-      0%, 50%, 100% { opacity: 1; }
-      25%, 75% { opacity: 0.3; }
-    }
-    .buttons a {
-      margin-left: 10px;
-      padding: 8px 15px;
-      border-radius: 5px;
-      text-decoration: none;
-      color: white;
-      font-weight: bold;
-    }
-    .subscribe { background: red; }
+/* Header */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  background: rgba(0,0,0,0.85);
+}
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.logo img {
+  height: 40px;
+}
+.live-badge {
+  color: #fff;
+  background: red;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: bold;
+  animation: blink 1s infinite;
+}
+@keyframes blink {
+  0%, 50%, 100% { opacity: 1; }
+  25%, 75% { opacity: 0.3; }
+}
+.buttons a {
+  margin-left: 10px;
+  padding: 8px 15px;
+  border-radius: 5px;
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+}
+.subscribe { background: red; }
 
-    /* Event grid for desktop */
-    .event-wrapper {
-      padding: 20px;
-    }
-    .event-grid {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 20px;
-    }
+/* Event Wrapper */
+.event-wrapper { padding: 20px; }
 
-    /* Event card */
-    .event-card {
-      min-width: 220px;
-      background: rgba(0,0,0,0.7);
-      border-radius: 10px;
-      overflow: hidden;
-      cursor: pointer;
-      transition: transform 0.3s;
-      flex-shrink: 0;
-    }
-    .event-card:hover { transform: scale(1.05); }
-    .event-image {
-      position: relative;
-      width: 100%;
-      height: 160px;
-      background: #000;
-    }
-    .event-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-    .live-tag {
-      position: absolute;
-      top: 8px;
-      left: 8px;
-      background: red;
-      padding: 3px 8px;
-      font-size: 14px;
-      font-weight: bold;
-      border-radius: 4px;
-    }
-    .today-tag {
-      position: absolute;
-      bottom: 8px;
-      left: 8px;
-      background: #222;
-      padding: 3px 8px;
-      font-size: 12px;
-      border-radius: 4px;
-    }
-    .event-info {
-      padding: 10px;
-      text-align: center;
-      font-size: 14px;
-    }
-    .event-info h3 {
-      margin: 5px 0;
-      font-size: 16px;
-    }
-    .event-info p {
-      margin: 3px 0;
-      font-size: 13px;
-      color: #ccc;
-    }
+/* Desktop grid: tetap 5 kolom per row */
+.event-row {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 20px;
+  margin-bottom: 20px;
+}
 
-    /* Users Online */
-    .online-users {
-      text-align: center;
-      margin: 20px 0;
-      font-size: 18px;
-      font-weight: bold;
-    }
+/* Event card */
+.event-card {
+  min-width: 220px;
+  background: rgba(0,0,0,0.7);
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+.event-card:hover { transform: scale(1.05); }
 
-    /* Responsive: Mobile → horizontal scroll */
-    @media (max-width: 1024px) {
-      .event-grid {
-        display: flex;
-        overflow-x: auto;
-        gap: 15px;
-        scroll-snap-type: x mandatory;
-        padding-bottom: 10px;
-      }
-      .event-card {
-        scroll-snap-align: start;
-      }
-    }
-  </style>
+.event-image {
+  position: relative;
+  width: 100%;
+  height: 160px;
+  background: #000;
+}
+.event-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.live-tag {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  background: red;
+  padding: 3px 8px;
+  font-size: 14px;
+  font-weight: bold;
+  border-radius: 4px;
+}
+.today-tag {
+  position: absolute;
+  bottom: 8px;
+  left: 8px;
+  background: #222;
+  padding: 3px 8px;
+  font-size: 12px;
+  border-radius: 4px;
+}
+
+.event-info {
+  padding: 10px;
+  text-align: center;
+  font-size: 14px;
+}
+.event-info h3 { margin: 5px 0; font-size: 16px; }
+.event-info p { margin: 3px 0; font-size: 13px; color: #ccc; }
+
+/* Users Online */
+#online-users {
+  text-align:center;
+  font-size:18px;
+  font-weight:bold;
+  color:#fff;
+  margin: 30px 0;
+}
+
+/* Logo di bawah semua */
+#bottom-logo {
+  text-align:center;
+  margin:20px 0;
+}
+#bottom-logo img {
+  max-width:150px;
+  height:auto;
+}
+
+/* Mobile / HP: horizontal scroll untuk setiap row */
+@media (max-width: 1024px) {
+  .event-row {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    gap: 15px;
+    padding-bottom: 10px;
+    scroll-snap-type: x mandatory;
+  }
+
+  .event-card {
+    flex: 0 0 auto;
+    min-width: 200px;
+    scroll-snap-align: start;
+  }
+}
+</style>
 </head>
 <body>
 
-  <!-- Header -->
-  <header>
-    <div class="logo" role="banner">
-      <a href="https://api.powerafftrky.com/t/clk?id=A0tlLVCl8BigyXZfB&s1=football2025" id="logo-link" aria-label="Go to campaign">
-        <img src="https://i.imgur.com/V0QYwjf.png" alt="Logo">
-      </a>
-      <span class="live-badge">LIVE</span>
+<!-- Header -->
+<header>
+  <div class="logo" role="banner">
+    <a href="https://api.powerafftrky.com/t/clk?id=A0tlLVCl8BigyXZfB&s1=football2025" id="logo-link" aria-label="Go to campaign">
+      <img src="https://i.imgur.com/V0QYwjf.png" alt="Logo">
+    </a>
+    <span class="live-badge">LIVE</span>
+  </div>
+  <nav class="buttons" role="navigation" aria-label="Actions">
+    <a href="https://api.powerafftrky.com/t/clk?id=A0tlLVCl8BigyXZfB&s1=football2025" class="subscribe">Subscribe Now</a>
+  </nav>
+</header>
+
+<!-- Event Wrapper -->
+<div class="event-wrapper">
+
+  <!-- Row 1: Event 1–5 -->
+  <div class="event-row event-row-1">
+    <div class="event-card" onclick="window.location.href='https://api.powerafftrky.com/t/clk?id=A0tlLVCl8BigyXZfB&s1=football2025'">
+      <div class="event-image">
+        <img src="https://i.imgur.com/BnlUUj1.jpeg" alt="Event 1">
+        <span class="live-tag">LIVE</span>
+        <span class="today-tag">Today</span>
+      </div>
+      <div class="event-info">
+        <h3>Spartans vs Titans</h3>
+        <p>25 Sept 2025 | 19:00</p>
+      </div>
     </div>
 
-    <nav class="buttons" role="navigation" aria-label="Actions">
-      <a href="https://api.powerafftrky.com/t/clk?id=A0tlLVCl8BigyXZfB&s1=football2025" class="subscribe" id="subscribe-btn">Subscribe Now</a>
-    </nav>
-  </header>
-
-  <!-- Event Grid -->
-  <div class="event-wrapper">
-    <div class="event-grid">
-      <!-- contoh 10 event -->
-      <div class="event-card" onclick="goToCampaign()">
-        <div class="event-image">
-          <img src="https://i.imgur.com/BnlUUj1.jpeg" alt="Event 1">
-          <span class="live-tag">LIVE</span>
-          <span class="today-tag">Today</span>
-        </div>
-        <div class="event-info">
-          <h3>Spartans vs Titans</h3>
-          <p>25 Sept 2025 | 19:00</p>
-        </div>
+    <div class="event-card" onclick="window.location.href='https://api.powerafftrky.com/t/clk?id=A0tlLVCl8BigyXZfB&s1=football2025'">
+      <div class="event-image">
+        <img src="https://i.imgur.com/BnlUUj1.jpeg" alt="Event 2">
+        <span class="live-tag">LIVE</span>
+        <span class="today-tag">Today</span>
       </div>
-
-      <div class="event-card" onclick="goToCampaign()">
-        <div class="event-image">
-          <img src="https://i.imgur.com/BnlUUj1.jpeg" alt="Event 2">
-          <span class="live-tag">LIVE</span>
-          <span class="today-tag">Today</span>
-        </div>
-        <div class="event-info">
-          <h3>Panthers vs Braves</h3>
-          <p>25 Sept 2025 | 21:30</p>
-        </div>
+      <div class="event-info">
+        <h3>Panthers vs Braves</h3>
+        <p>25 Sept 2025 | 21:30</p>
       </div>
+    </div>
 
-      <div class="event-card" onclick="goToCampaign()">
-        <div class="event-image">
-          <img src="https://i.imgur.com/BnlUUj1.jpeg" alt="Event 3">
-          <span class="live-tag">LIVE</span>
-          <span class="today-tag">Today</span>
-        </div>
-        <div class="event-info">
-          <h3>Tigers vs Wolves</h3>
-          <p>26 Sept 2025 | 18:45</p>
-        </div>
+    <div class="event-card" onclick="window.location.href='https://api.powerafftrky.com/t/clk?id=A0tlLVCl8BigyXZfB&s1=football2025'">
+      <div class="event-image">
+        <img src="https://i.imgur.com/BnlUUj1.jpeg" alt="Event 3">
+        <span class="live-tag">LIVE</span>
+        <span class="today-tag">Today</span>
       </div>
-
-      <div class="event-card" onclick="goToCampaign()">
-        <div class="event-image">
-          <img src="https://i.imgur.com/BnlUUj1.jpeg" alt="Event 4">
-          <span class="live-tag">LIVE</span>
-          <span class="today-tag">Today</span>
-        </div>
-        <div class="event-info">
-          <h3>Eagles vs Sharks</h3>
-          <p>26 Sept 2025 | 20:15</p>
-        </div>
+      <div class="event-info">
+        <h3>Tigers vs Wolves</h3>
+        <p>26 Sept 2025 | 18:45</p>
       </div>
+    </div>
 
-      <div class="event-card" onclick="goToCampaign()">
-        <div class="event-image">
-          <img src="https://i.imgur.com/BnlUUj1.jpeg" alt="Event 5">
-          <span class="live-tag">LIVE</span>
-          <span class="today-tag">Today</span>
-        </div>
-        <div class="event-info">
-          <h3>Hawks vs Dragons</h3>
-          <p>27 Sept 2025 | 22:00</p>
-        </div>
+    <div class="event-card" onclick="window.location.href='https://api.powerafftrky.com/t/clk?id=A0tlLVCl8BigyXZfB&s1=football2025'">
+      <div class="event-image">
+        <img src="https://i.imgur.com/BnlUUj1.jpeg" alt="Event 4">
+        <span class="live-tag">LIVE</span>
+        <span class="today-tag">Today</span>
       </div>
-
-      <div class="event-card" onclick="goToCampaign()">
-        <div class="event-image">
-          <img src="https://i.imgur.com/BnlUUj1.jpeg" alt="Event 6">
-          <span class="live-tag">LIVE</span>
-          <span class="today-tag">Today</span>
-        </div>
-        <div class="event-info">
-          <h3>Warriors vs Lions</h3>
-          <p>28 Sept 2025 | 19:15</p>
-        </div>
+      <div class="event-info">
+        <h3>Eagles vs Sharks</h3>
+        <p>26 Sept 2025 | 20:15</p>
       </div>
+    </div>
 
-      <div class="event-card" onclick="goToCampaign()">
-        <div class="event-image">
-          <img src="https://i.imgur.com/BnlUUj1.jpeg" alt="Event 7">
-          <span class="live-tag">LIVE</span>
-          <span class="today-tag">Today</span>
-        </div>
-        <div class="event-info">
-          <h3>Kings vs Rebels</h3>
-          <p>28 Sept 2025 | 21:00</p>
-        </div>
+    <div class="event-card" onclick="window.location.href='https://api.powerafftrky.com/t/clk?id=A0tlLVCl8BigyXZfB&s1=football2025'">
+      <div class="event-image">
+        <img src="https://i.imgur.com/BnlUUj1.jpeg" alt="Event 5">
+        <span class="live-tag">LIVE</span>
+        <span class="today-tag">Today</span>
       </div>
-
-      <div class="event-card" onclick="goToCampaign()">
-        <div class="event-image">
-          <img src="https://i.imgur.com/BnlUUj1.jpeg" alt="Event 8">
-          <span class="live-tag">LIVE</span>
-          <span class="today-tag">Today</span>
-        </div>
-        <div class="event-info">
-          <h3>Falcons vs Storm</h3>
-          <p>29 Sept 2025 | 20:30</p>
-        </div>
-      </div>
-
-      <div class="event-card" onclick="goToCampaign()">
-        <div class="event-image">
-          <img src="https://i.imgur.com/BnlUUj1.jpeg" alt="Event 9">
-          <span class="live-tag">LIVE</span>
-          <span class="today-tag">Today</span>
-        </div>
-        <div class="event-info">
-          <h3>Giants vs Raiders</h3>
-          <p>29 Sept 2025 | 22:45</p>
-        </div>
-      </div>
-
-      <div class="event-card" onclick="goToCampaign()">
-        <div class="event-image">
-          <img src="https://i.imgur.com/BnlUUj1.jpeg" alt="Event 10">
-          <span class="live-tag">LIVE</span>
-          <span class="today-tag">Today</span>
-        </div>
-        <div class="event-info">
-          <h3>Bulls vs Rockets</h3>
-          <p>30 Sept 2025 | 18:30</p>
-        </div>
+      <div class="event-info">
+        <h3>Hawks vs Dragons</h3>
+        <p>27 Sept 2025 | 22:00</p>
       </div>
     </div>
   </div>
+
+  <!-- Row 2: Event 6–10 -->
+  <div class="event-row event-row-2">
+    <div class="event-card" onclick="window.location.href='https://api.powerafftrky.com/t/clk?id=A0tlLVCl8BigyXZfB&s1=football2025'">
+      <div class="event-image">
+        <img src="https://i.imgur.com/BnlUUj1.jpeg" alt="Event 6">
+        <span class="live-tag">LIVE</span>
+        <span class="today-tag">Today</span>
+      </div>
+      <div class="event-info">
+        <h3>Warriors vs Lions</h3>
+        <p>28 Sept 2025 | 19:15</p>
+      </div>
+    </div>
+
+    <div class="event-card" onclick="window.location.href='https://api.powerafftrky.com/t/clk?id=A0tlLVCl8BigyXZfB&s1=football2025'">
+      <div class="event-image">
+        <img src="https://i.imgur.com/BnlUUj1.jpeg" alt="Event 7">
+        <span class="live-tag">LIVE</span>
+        <span class="today-tag">Today</span>
+      </div>
+      <div class="event-info">
+        <h3>Kings vs Rebels</h3>
+        <p>28 Sept 2025 | 21:00</p>
+      </div>
+    </div>
+
+    <div class="event-card" onclick="window.location.href='https://api.powerafftrky.com/t/clk?id=A0tlLVCl8BigyXZfB&s1=football2025'">
+      <div class="event-image">
+        <img src="https://i.imgur.com/BnlUUj1.jpeg" alt="Event 8">
+        <span class="live-tag">LIVE</span>
+        <span class="today-tag">Today</span>
+      </div>
+      <div class="event-info">
+        <h3>Falcons vs Storm</h3>
+        <p>29 Sept 2025 | 20:30</p>
+      </div>
+    </div>
+
+    <div class="event-card" onclick="window.location.href='https://api.powerafftrky.com/t/clk?id=A0tlLVCl8BigyXZfB&s1=football2025'">
+      <div class="event-image">
+        <img src="https://i.imgur.com/BnlUUj1.jpeg" alt="Event 9">
+        <span class="live-tag">LIVE</span>
+        <span class="today-tag">Today</span>
+      </div>
+      <div class="event-info">
+        <h3>Giants vs Raiders</h3>
+        <p>29 Sept 2025 | 22:45</p>
+      </div>
+    </div>
+
+    <div class="event-card" onclick="window.location.href='https://api.powerafftrky.com/t/clk?id=A0tlLVCl8BigyXZfB&s1=football2025'">
+      <div class="event-image">
+        <img src="https://i.imgur.com/BnlUUj1.jpeg" alt="Event 10">
+        <span class="live-tag">LIVE</span>
+        <span class="today-tag">Today</span>
+      </div>
+      <div class="event-info">
+        <h3>Bulls vs Rockets</h3>
+        <p>30 Sept 2025 | 18:30</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+<script>
+  // Users Online randomizer
+  let userCount = 7403;
+  const userCountEl = document.getElementById("user-count");
+  function updateUsers() {
+    let change = Math.floor(Math.random() * 16) - 5;
+    userCount = Math.max(1000, userCount + change);
+    userCountEl.textContent = userCount.toLocaleString();
+  }
+  setInterval(updateUsers, 3000);
+
+  // Optional: function goToCampaign untuk card
+  function goToCampaign() {
+    window.location.href = "https://api.powerafftrky.com/t/clk?id=A0tlLVCl8BigyXZfB&s1=football2025";
+  }
+</script>
+
+
 
 
 <!-- Histats.com  START  (aync)-->
