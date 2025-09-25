@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Live Stream Events</title>
+
   <style>
     body {
       margin: 0;
@@ -53,7 +54,7 @@
     .subscribe { background: red; }
     .login { background: #444; }
 
-    /* Event grid */
+    /* Event grid selalu 5 kolom */
     .event-grid {
       display: grid;
       grid-template-columns: repeat(5, 1fr);
@@ -119,14 +120,6 @@
       margin: 20px 0;
       font-size: 18px;
       font-weight: bold;
-    }
-
-    /* Responsive */
-    @media (max-width: 1024px) {
-      .event-grid { grid-template-columns: repeat(2, 1fr); }
-    }
-    @media (max-width: 600px) {
-      .event-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
