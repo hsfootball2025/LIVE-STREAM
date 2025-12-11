@@ -4,13 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Live Stream Events</title>
+
 <style>
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background: url('https://i.imgur.com/9fsVIFR.jpeg') no-repeat center center fixed;
-  background-size: cover;
-  color: white;
+  background: #ffffff !important;
+  color: #000;
 }
 
 /* Header */
@@ -19,16 +19,14 @@ header {
   justify-content: space-between;
   align-items: center;
   padding: 15px 20px;
-  background: rgba(0,0,0,0.85);
+  background: #001f3f; 
+  color: white;
 }
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
+
 .logo img {
   height: 40px;
 }
+
 .live-badge {
   color: #fff;
   background: red;
@@ -36,12 +34,15 @@ header {
   border-radius: 4px;
   font-size: 14px;
   font-weight: bold;
+  margin-left: 10px;
   animation: blink 1s infinite;
 }
+
 @keyframes blink {
-  0%, 50%, 100% { opacity: 1; }
-  25%, 75% { opacity: 0.3; }
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.2; }
 }
+
 .buttons a {
   margin-left: 10px;
   padding: 8px 15px;
@@ -55,7 +56,7 @@ header {
 /* Event Wrapper */
 .event-wrapper { padding: 20px; }
 
-/* Desktop grid: tetap 5 kolom per row */
+/* Grid */
 .event-row {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
@@ -63,56 +64,36 @@ header {
   margin-bottom: 20px;
 }
 
-/* Event card */
+/* Event Card */
 .event-card {
   min-width: 220px;
-  background: rgba(0,0,0,0.7);
+  background: #f5f5f5;
   border-radius: 10px;
-  overflow: hidden;
   transition: transform 0.3s;
+  border: 1px solid #ddd;
+  overflow: hidden;
 }
+
 .event-card:hover { transform: scale(1.05); }
 
 .event-image {
-  position: relative;
   width: 100%;
-  height: 160px;
+  height: 450px;
   background: #000;
 }
+
 .event-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
-.live-tag {
-  position: absolute;
-  top: 8px;
-  left: 8px;
-  background: red;
-  padding: 3px 8px;
-  font-size: 14px;
-  font-weight: bold;
-  border-radius: 4px;
-}
-.today-tag {
-  position: absolute;
-  bottom: 8px;
-  left: 8px;
-  background: #222;
-  padding: 3px 8px;
-  font-size: 12px;
-  border-radius: 4px;
-}
 
 .event-info {
   padding: 10px;
   text-align: center;
-  font-size: 14px;
+  color: #000;
 }
-.event-info h3 { margin: 5px 0; font-size: 16px; }
-.event-info p { margin: 3px 0; font-size: 13px; color: #ccc; }
 
-/* Subscribe button di event */
 .subscribe-btn {
   display: inline-block;
   margin-top: 8px;
@@ -122,158 +103,232 @@ header {
   font-weight: bold;
   border-radius: 5px;
   text-decoration: none;
-  transition: background 0.3s;
-}
-.subscribe-btn:hover {
-  background: darkred;
 }
 
-/* Users Online */
-#online-users {
-  text-align:center;
-  font-size:18px;
-  font-weight:bold;
-  color:#fff;
-  margin: 30px 0;
+/* Ads */
+.ad-wrapper {
+  width: 100%;
+  text-align: center;
+  margin: 20px 0;
 }
 
-/* Logo di bawah semua */
-#bottom-logo {
-  text-align:center;
-  margin:20px 0;
-}
-#bottom-logo img {
-  max-width:150px;
-  height:auto;
+/* YouTube Grid */
+#highlights { padding: 20px; }
+
+.highlight-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
 }
 
-/* Mobile / HP: horizontal scroll untuk setiap row */
+.highlight-grid iframe {
+  width: 100%;
+  height: 200px;
+  border: none;
+  border-radius: 10px;
+}
+
+/* Mobile */
 @media (max-width: 1024px) {
   .event-row {
     display: flex;
-    flex-wrap: nowrap;
     overflow-x: auto;
     gap: 15px;
     padding-bottom: 10px;
-    scroll-snap-type: x mandatory;
   }
-
-  .event-card {
-    flex: 0 0 auto;
-    min-width: 200px;
-    scroll-snap-align: start;
-  }
+  .event-card { min-width: 250px; }
+  .event-image { height: 350px; }
 }
 </style>
+
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: #f5f5f5;
+    padding: 20px;
+  }
+  .video-block {
+    background: #ffffff;
+    padding: 15px;
+    margin-bottom: 40px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  }
+  iframe {
+    width: 100%;
+    height: 315px;
+    border: none;
+    border-radius: 8px;
+  }
+  .ad-box {
+    margin-top: 20px;
+    text-align: center;
+  }
+</style>
+
 </head>
 <body>
 
 <!-- Header -->
 <header>
-  <div class="logo" role="banner">
-    <a href="https://api.powerafftrky.com/t/clk?id=A0tlLVCl8BigyXZfB&s1=football2025" id="logo-link" aria-label="Go to campaign">
-      <img src="https://i.imgur.com/V0QYwjf.png" alt="Logo">
-    </a>
+  <div class="logo">
+    <img src="https://i.ibb.co.com/1tdrBBBQ/ghsa-logo-175w.png">
     <span class="live-badge">LIVE</span>
   </div>
-  <nav class="buttons" role="navigation" aria-label="Actions">
-    <a href="https://api.powerafftrky.com/t/clk?id=A0tlLVCl8BigyXZfB&s1=football2025" class="subscribe">Subscribe Now</a>
+
+  <nav class="buttons">
+    <a href="https://api.powerafftrky.com/t/clk?id=v9tpdtOaQf5eoZi5&s1=subaffiliate&s2=ky" 
+       class="subscribe" 
+       target="_blank">
+       Subscribe Now
+    </a>
   </nav>
 </header>
 
-<!-- Event Wrapper -->
+<!-- Top Banner Ad -->
+<div class="ad-wrapper">
+<script>document.write(atob("PHNjcmlwdCB0eXBlPSJ0ZXh0L2phdmFzY3JpcHQiPgoJYXRPcHRpb25zID0gewoJCSdrZXknIDogJ2RkMTJhNTU0ZGI2NDgyZTBkYmUzYTEwMmI5ZDc1YmIyJywKCQknZm9ybWF0JyA6ICdpZnJhbWUnLAoJCSdoZWlnaHQnIDogNTAsCgkJJ3dpZHRoJyA6IDMyMCwKCQkncGFyYW1zJyA6IHt9Cgl9Owo8L3NjcmlwdD4KPHNjcmlwdCB0eXBlPSJ0ZXh0L2phdmFzY3JpcHQiIHNyYz0iLy93d3cuaGlnaHBlcmZvcm1hbmNlZm9ybWF0LmNvbS9kZDEyYTU1NGRiNjQ4MmUwZGJlM2ExMDJiOWQ3NWJiMi9pbnZva2UuanMiPjwvc2NyaXB0Pg=="));</script>
+</div>
+
+<!-- Event Section -->
 <div class="event-wrapper">
+  <div class="event-row">
 
-  <!-- Row 1: Event 1–5 -->
-  <div class="event-row event-row-1">
-    <div class="event-card">
-      <div class="event-image">
-        <img src="https://i.imgur.com/obC8THx.jpeg" alt="Event 1">
-        <span class="live-tag">LIVE</span>
-        <span class="today-tag">Today</span>
+    <!-- Event 1 -->
+    <a href="https://api.powerafftrky.com/t/clk?id=v9tpdtOaQf5eoZi5&s1=subaffiliate&s2=ky" 
+       target="_blank" 
+       class="event-link">
+      <div class="event-card">
+        <div class="event-image">
+          <img src="https://archive.org/download/image-1_202512/image%20%281%29.jpg">
+        </div>
+        <div class="event-info">
+          <h3>Roswell vs Thomas County C</h3>
+          <p>Thu. Dec 11 | 07:00 PM</p>
+           <p>Subscribe to Watch</p>
+          <a href="https://api.powerafftrky.com/t/clk?id=v9tpdtOaQf5eoZi5&s1=subaffiliate&s2=ky" 
+             class="subscribe-btn" 
+             target="_blank">
+             Watch Live
+          </a>
+        </div>
       </div>
-      <div class="event-info">
-        <h3>La Porte vs Crown Point</h3>
-        <p>Oct. 3 | 07:00 PM</p>
-        <a href="https://api.powerafftrky.com/t/clk?id=A0tlLVCl8BigyXZfB&s1=football2025" class="subscribe-btn">Subscribe Now</a>
-      </div>
-    </div>
+    </a>
 
-    <div class="event-card">
-      <div class="event-image">
-        <img src="https://i.imgur.com/Iapo26E.jpeg" alt="Event 2">
-        <span class="live-tag">LIVE</span>
-        <span class="today-tag">Today</span>
+    <!-- Event 2 -->
+    <a href="https://api.powerafftrky.com/t/clk?id=v9tpdtOaQf5eoZi5&s1=subaffiliate&s2=ky" 
+       target="_blank" class="event-link">
+      <div class="event-card">
+        <div class="event-image">
+          <img src="https://archive.org/download/image_20251211_0929/image.jpg">
+        </div>
+        <div class="event-info">
+          <h3>gainesville vs rome</h3>
+          <p>Thu. Dec 11 | 07:30 PM</p>
+           <p>Subscribe to Watch</p>
+          <a href="https://api.powerafftrky.com/t/clk?id=v9tpdtOaQf5eoZi5&s1=subaffiliate&s2=ky" 
+             class="subscribe-btn" 
+             target="_blank">
+             Watch Live
+          </a>
+        </div>
       </div>
-      <div class="event-info">
-        <h3>Concord vs Goshen</h3>
-        <p>Oct. 3 | 07:00 PM</p>
-        <a href="https://api.powerafftrky.com/t/clk?id=A0tlLVCl8BigyXZfB&s1=football2025" class="subscribe-btn">Subscribe Now</a>
-      </div>
-    </div>
+    </a>
 
-    <div class="event-card">
-      <div class="event-image">
-        <img src="https://i.imgur.com/mF81UHq.jpeg" alt="Event 3">
-        <span class="live-tag">LIVE</span>
-        <span class="today-tag">Today</span>
-      </div>
-      <div class="event-info">
-        <h3>Hamilton Heights vs Twin Lakes</h3>
-        <p>Oct. 3 | 07:00 PM</p>
-        <a href="https://api.powerafftrky.com/t/clk?id=A0tlLVCl8BigyXZfB&s1=football2025" class="subscribe-btn">Subscribe Now</a>
-      </div>
-    </div>
-
-    <div class="event-card">
-      <div class="event-image">
-        <img src="https://i.imgur.com/vOvjjVK.jpeg" alt="Event 4">
-        <span class="live-tag">LIVE</span>
-        <span class="today-tag">Today</span>
-      </div>
-      <div class="event-info">
-        <h3>Warren Central vs Lawrence North</h3>
-        <p>Oct. 3 | 07:00 PM</p>
-        <a href="https://api.powerafftrky.com/t/clk?id=A0tlLVCl8BigyXZfB&s1=football2025" class="subscribe-btn">Subscribe Now</a>
-      </div>
-    </div>
-
-    <div class="event-card">
-      <div class="event-image">
-        <img src="https://i.imgur.com/PYfEJgN.jpeg" alt="Event 5">
-        <span class="live-tag">LIVE</span>
-        <span class="today-tag">Today</span>
-      </div>
-      <div class="event-info">
-        <h3>Guerin Catholic vs Pike</h3>
-        <p>Oct. 3 | 07:00 PM</p>
-        <a href="https://api.powerafftrky.com/t/clk?id=A0tlLVCl8BigyXZfB&s1=football2025" class="subscribe-btn">Subscribe Now</a>
-      </div>
-    </div>
   </div>
 </div>
 
-<!-- Users Online -->
-<div id="online-users">
-  <span id="user-count">7403</span> Users Online Now
+<!-- Banner Ad -->
+<div class="ad-wrapper">
+<script type="text/javascript">
+	atOptions = {
+		'key' : 'ba4b839b8718e0071c162f4a4896d426',
+		'format' : 'iframe',
+		'height' : 50,
+		'width' : 320,
+		'params' : {}
+	};
+</script>
+<script type="text/javascript" src="//porchadvertise.com/ba4b839b8718e0071c162f4a4896d426/invoke.js"></script>
 </div>
 
-<script>
-  // Users Online randomizer
-  let userCount = 7403;
-  const userCountEl = document.getElementById("user-count");
+<!-- GHSA Footer Image -->
+<div style="width:100%; text-align:center; margin-top:30px;">
+  <img src="https://i.ibb.co.com/Rp186qgF/bracket-image.png" alt="GHSA Footer" style="max-width:100%; height:auto;">
+</div>
 
-  function updateUsers() {
-    let change = Math.floor(Math.random() * 16) - 5;
-    userCount = Math.max(1000, userCount + change);
-    userCountEl.textContent = userCount.toLocaleString();
-  }
-  setInterval(updateUsers, 3000);
+<!-- YouTube Highlights -->
+<section id="highlights">
+  <h2>Highlights Video</h2>
+
+  <div class="highlight-grid">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/LEej_hTo8zg?si=NY-D0pgsj1k6ypz8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/FPcXLKBs1wY?si=CUFwcOY-S9A789Xo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/OSF2TcRLNpg?si=J2BLAowK4ODJUM0d" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/X5mhFHr7XAw?si=v-iJUbSp8aT0iz0d" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/V8NYvbIseJ8?si=SXYMFv38n2P7eTIy" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/kPRBGGlyUqo?si=9YC8qHg0BtM1PZB1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/AD75IPz2Yl0?si=ZyNczt72St0ZsS1O" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/DTkfGsPlCQk?si=VJJIDSkMemX61zqa" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/y2CpXACppTU?si=MvXiJYxenY2OXavU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/uKLcnAliZFA?si=pF9wzBQ1GWbVV9VU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+  </div>
+</section>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const youtubeEmbeds = document.querySelectorAll("iframe[src*='youtube.com'], iframe[src*='youtu.be']");
+
+    youtubeEmbeds.forEach(function (yt) {
+        
+        // buat container
+        const adBox = document.createElement("div");
+        adBox.style.margin = "12px 0";
+        adBox.style.textAlign = "center";
+
+        // script 1 (atOptions)
+        const s1 = document.createElement("script");
+        s1.type = "text/javascript";
+        s1.innerHTML = `
+            atOptions = {
+                'key' : 'd69f857a40759d90e9f39d6d3928b3cd',
+                'format' : 'iframe',
+                'height' : 250,
+                'width' : 300,
+                'params' : {}
+            };
+        `;
+
+        // script 2 (invoke.js)
+        const s2 = document.createElement("script");
+        s2.type = "text/javascript";
+        s2.src = "//porchadvertise.com/d69f857a40759d90e9f39d6d3928b3cd/invoke.js";
+
+        // masukkan ke container
+        adBox.appendChild(s1);
+        adBox.appendChild(s2);
+
+        // taruh iklan setelah iframe
+        yt.insertAdjacentElement("afterend", adBox);
+    });
+});
 </script>
+
+<script
+  async="async"
+  data-cfasync="false"
+  src="//porchadvertise.com/d57fa5540bf1402d7b0c2346e5f77081/invoke.js"
+></script>
+<div id="container-d57fa5540bf1402d7b0c2346e5f77081"></div>
+
+<!-- GHSA Footer Image -->
+<div style="width:100%; text-align:center; margin-top:30px;">
+  <img src="https://i.ibb.co.com/607DS9wm/Capture.jpg" alt="GHSA Footer" style="max-width:100%; height:auto;">
+</div>
 
 <!-- Histats.com  START  (aync)-->
 <script type="text/javascript">var _Hasync= _Hasync|| [];
-_Hasync.push(['Histats.start', '1,4979389,4,0,0,0,00010000']);
+_Hasync.push(['Histats.start', '1,4980999,4,0,0,0,00010000']);
 _Hasync.push(['Histats.fasi', '1']);
 _Hasync.push(['Histats.track_hits', '']);
 (function() {
@@ -281,13 +336,8 @@ var hs = document.createElement('script'); hs.type = 'text/javascript'; hs.async
 hs.src = ('//s10.histats.com/js15_as.js');
 (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(hs);
 })();</script>
-<noscript><a href="/" target="_blank"><img  src="//sstatic1.histats.com/0.gif?4979389&101" alt="" border="0"></a></noscript>
+<noscript><a href="/" target="_blank"><img  src="//sstatic1.histats.com/0.gif?4980999&101" alt="" border="0"></a></noscript>
 <!-- Histats.com  END  -->
-
-<!-- Bottom Logo -->
-<div id="bottom-logo">
-  <img src="https://i.imgur.com/BRkAXCc.png" alt="Bottom Logo">
-</div>
 
 </body>
 </html>
