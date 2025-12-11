@@ -9,7 +9,7 @@
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background: #ffffff !important;
+  background: #e8f0ff !important;
   color: #000;
 }
 
@@ -53,10 +53,8 @@ header {
 }
 .subscribe { background: red; }
 
-/* Event Wrapper */
 .event-wrapper { padding: 20px; }
 
-/* Grid */
 .event-row {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
@@ -64,7 +62,6 @@ header {
   margin-bottom: 20px;
 }
 
-/* Event Card */
 .event-card {
   min-width: 220px;
   background: #f5f5f5;
@@ -105,13 +102,6 @@ header {
   text-decoration: none;
 }
 
-/* Ads */
-.ad-wrapper {
-  width: 100%;
-  text-align: center;
-  margin: 20px 0;
-}
-
 /* YouTube Grid */
 #highlights { padding: 20px; }
 
@@ -132,39 +122,18 @@ header {
 @media (max-width: 1024px) {
   .event-row {
     display: flex;
-    overflow-x: auto;
+    flex-direction: column;   /* ⬅️ event jadi kebawah */
     gap: 15px;
     padding-bottom: 10px;
+    overflow-x: unset;        /* ⬅️ hilangkan scroll samping */
   }
-  .event-card { min-width: 250px; }
+  .event-card {
+    width: 100%;              /* ⬅️ biar full lebar */
+    min-width: unset;
+  }
   .event-image { height: 350px; }
 }
-</style>
 
-<style>
-  body {
-    font-family: Arial, sans-serif;
-    background: #f5f5f5;
-    padding: 20px;
-  }
-  .video-block {
-    background: #ffffff;
-    padding: 15px;
-    margin-bottom: 40px;
-    border-radius: 10px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-  }
-  iframe {
-    width: 100%;
-    height: 315px;
-    border: none;
-    border-radius: 8px;
-  }
-  .ad-box {
-    margin-top: 20px;
-    text-align: center;
-  }
-</style>
 
 </head>
 <body>
@@ -172,7 +141,7 @@ header {
 <!-- Header -->
 <header>
   <div class="logo">
-    <img src="https://i.ibb.co.com/1tdrBBBQ/ghsa-logo-175w.png">
+    <img src="https://i.ibb.co.com/1tdrBBBQ/ghsa-logo-175w.png" alt="logo">
     <span class="live-badge">LIVE</span>
   </div>
 
@@ -185,9 +154,18 @@ header {
   </nav>
 </header>
 
-<!-- Top Banner Ad -->
-<div class="ad-wrapper">
-<script>document.write(atob("PHNjcmlwdCB0eXBlPSJ0ZXh0L2phdmFzY3JpcHQiPgoJYXRPcHRpb25zID0gewoJCSdrZXknIDogJ2RkMTJhNTU0ZGI2NDgyZTBkYmUzYTEwMmI5ZDc1YmIyJywKCQknZm9ybWF0JyA6ICdpZnJhbWUnLAoJCSdoZWlnaHQnIDogNTAsCgkJJ3dpZHRoJyA6IDMyMCwKCQkncGFyYW1zJyA6IHt9Cgl9Owo8L3NjcmlwdD4KPHNjcmlwdCB0eXBlPSJ0ZXh0L2phdmFzY3JpcHQiIHNyYz0iLy93d3cuaGlnaHBlcmZvcm1hbmNlZm9ybWF0LmNvbS9kZDEyYTU1NGRiNjQ4MmUwZGJlM2ExMDJiOWQ3NWJiMi9pbnZva2UuanMiPjwvc2NyaXB0Pg=="));</script>
+<!-- Top Banner Ad (jarak diperbaiki: sangat dekat ke event) -->
+<div style="width:100%; display:flex; justify-content:center; margin-top:6px; margin-bottom:0; padding:0;">
+  <script type="text/javascript">
+    atOptions = {
+      'key' : 'ba4b839b8718e0071c162f4a4896d426',
+      'format' : 'iframe',
+      'height' : 50,
+      'width' : 320,
+      'params' : {}
+    };
+  </script>
+  <script type="text/javascript" src="//porchadvertise.com/ba4b839b8718e0071c162f4a4896d426/invoke.js"></script>
 </div>
 
 <!-- Event Section -->
@@ -200,12 +178,12 @@ header {
        class="event-link">
       <div class="event-card">
         <div class="event-image">
-          <img src="https://archive.org/download/image-1_202512/image%20%281%29.jpg">
+          <img src="https://archive.org/download/image-1_202512/image%20%281%29.jpg" alt="event1">
         </div>
         <div class="event-info">
           <h3>Roswell vs Thomas County C</h3>
           <p>Thu. Dec 11 | 07:00 PM</p>
-           <p>Subscribe to Watch</p>
+          <p>Subscribe to Watch</p>
           <a href="https://api.powerafftrky.com/t/clk?id=v9tpdtOaQf5eoZi5&s1=subaffiliate&s2=ky" 
              class="subscribe-btn" 
              target="_blank">
@@ -220,12 +198,12 @@ header {
        target="_blank" class="event-link">
       <div class="event-card">
         <div class="event-image">
-          <img src="https://archive.org/download/image_20251211_0929/image.jpg">
+          <img src="https://archive.org/download/image_20251211_0929/image.jpg" alt="event2">
         </div>
         <div class="event-info">
-          <h3>gainesville vs rome</h3>
+          <h3>Gainesville vs Rome</h3>
           <p>Thu. Dec 11 | 07:30 PM</p>
-           <p>Subscribe to Watch</p>
+          <p>Subscribe to Watch</p>
           <a href="https://api.powerafftrky.com/t/clk?id=v9tpdtOaQf5eoZi5&s1=subaffiliate&s2=ky" 
              class="subscribe-btn" 
              target="_blank">
@@ -238,16 +216,16 @@ header {
   </div>
 </div>
 
-<!-- Banner Ad -->
-<div class="ad-wrapper">
+<!-- Banner Ad (bawah events) -->
+<div class="ad-wrapper" style="margin-top:14px; margin-bottom:18px; text-align:center;">
 <script type="text/javascript">
-	atOptions = {
-		'key' : 'ba4b839b8718e0071c162f4a4896d426',
-		'format' : 'iframe',
-		'height' : 50,
-		'width' : 320,
-		'params' : {}
-	};
+  atOptions = {
+    'key' : 'ba4b839b8718e0071c162f4a4896d426',
+    'format' : 'iframe',
+    'height' : 50,
+    'width' : 320,
+    'params' : {}
+  };
 </script>
 <script type="text/javascript" src="//porchadvertise.com/ba4b839b8718e0071c162f4a4896d426/invoke.js"></script>
 </div>
@@ -262,16 +240,16 @@ header {
   <h2>Highlights Video</h2>
 
   <div class="highlight-grid">
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/LEej_hTo8zg?si=NY-D0pgsj1k6ypz8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/FPcXLKBs1wY?si=CUFwcOY-S9A789Xo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/OSF2TcRLNpg?si=J2BLAowK4ODJUM0d" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/X5mhFHr7XAw?si=v-iJUbSp8aT0iz0d" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/V8NYvbIseJ8?si=SXYMFv38n2P7eTIy" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/kPRBGGlyUqo?si=9YC8qHg0BtM1PZB1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/AD75IPz2Yl0?si=ZyNczt72St0ZsS1O" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/DTkfGsPlCQk?si=VJJIDSkMemX61zqa" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/y2CpXACppTU?si=MvXiJYxenY2OXavU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/uKLcnAliZFA?si=pF9wzBQ1GWbVV9VU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/LEej_hTo8zg?si=NY-D0pgsj1k6ypz8" allowfullscreen></iframe>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/FPcXLKBs1wY?si=CUFwcOY-S9A789Xo" allowfullscreen></iframe>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/OSF2TcRLNpg?si=J2BLAowK4ODJUM0d" allowfullscreen></iframe>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/X5mhFHr7XAw?si=v-iJUbSp8aT0iz0d" allowfullscreen></iframe>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/V8NYvbIseJ8?si=SXYMFv38n2P7eTIy" allowfullscreen></iframe>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/kPRBGGlyUqo?si=9YC8qHg0BtM1PZB1" allowfullscreen></iframe>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/AD75IPz2Yl0?si=ZyNczt72St0ZsS1O" allowfullscreen></iframe>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/DTkfGsPlCQk?si=VJJIDSkMemX61zqa" allowfullscreen></iframe>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/y2CpXACppTU?si=MvXiJYxenY2OXavU" allowfullscreen></iframe>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/uKLcnAliZFA?si=pF9wzBQ1GWbVV9VU" allowfullscreen></iframe>
   </div>
 </section>
 
